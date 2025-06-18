@@ -204,8 +204,6 @@
             margin-bottom: 30px;
             border: 1px solid rgba(122,129,87,0.2);
             transition: all 0.4s ease;
-            transform-style: preserve-3d;
-            transform: perspective(500px) rotateX(0deg);
             position: relative;
             overflow: hidden;
         }
@@ -221,8 +219,6 @@
             transform: rotate(45deg);
             transition: 0.6s;
         }
-
-
 
         .card:hover::after {
             left: 100%;
@@ -591,7 +587,194 @@
             box-shadow: 0 0 15px rgba(198, 178, 106, 0.3);
         }
 
+        /* ==================== */
+        /* Анализы (SWOT/PEST/MOSCOW) */
+        /* ==================== */
+        .analysis-container {
+            margin-top: 20px;
+        }
+
+        .viz-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .viz-tab {
+            padding: 8px 20px;
+            background: none;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            background: rgba(198, 178, 106, 0.1);
+            flex: 0 0 auto;
+            white-space: nowrap;
+        }
+
+        .viz-tab.active {
+            background: var(--accent);
+            color: var(--dark);
+            box-shadow: 0 0 15px rgba(198, 178, 106, 0.4);
+        }
+
+        .viz-tab:hover:not(.active) {
+            background: rgba(198, 178, 106, 0.2);
+        }
+
+        .viz-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .viz-content.active {
+            display: block;
+        }
+
+        /* Общий стиль для аналитических карточек */
+        .analysis-card {
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            border: 1px solid rgba(122, 129, 87, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .analysis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .analysis-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .analysis-card h4 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .analysis-card h4 .analysis-icon {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
+        .analysis-card ul {
+            flex-grow: 1;
+            padding: 0;
+            list-style: none;
+        }
+
+        .analysis-card li {
+            padding: 10px 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .analysis-card li::before {
+            content: '•';
+            position: absolute;
+            left: 10px;
+            color: var(--accent);
+        }
+
+        .analysis-card li:hover {
+            transform: translateX(5px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Сетки для разных анализов */
+        .swot-grid {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .pest-grid {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .moscow-grid {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* ==================== */
+        /* Itch.io блок */
+        /* ==================== */
+        .itch-block {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .itch-container {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 15px rgba(198, 178, 106, 0.3);
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .itch-iframe-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .itch-iframe {
+            width: 100%;
+            height: 167px;
+            max-width: 552px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .itch-caption {
+            margin-top: 20px;
+            color: var(--highlight);
+            font-size: 1rem;
+        }
+
+        /* ==================== */
         /* Адаптивность */
+        /* ==================== */
         @media (max-width: 768px) {
             header {
                 padding: 80px 0 100px;
@@ -621,308 +804,113 @@
                 margin-bottom: 40px;
             }
             
+            .card {
+                padding: 30px;
+            }
             
+            /* Адаптация анализов */
+            .swot-grid,
+            .pest-grid,
+            .moscow-grid {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .analysis-card {
+                padding: 20px 15px;
+            }
+            
+            .analysis-card h4 {
+                font-size: 1.1rem;
+            }
+            
+            /* Футер */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-column {
+                text-align: center;
+            }
+            
+            .footer-column h3 {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+            }
+            
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+                width: 30px;
+            }
+            
+            .footer-column li {
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+                padding-left: 0;
+            }
+            
+            .footer-column li::before {
+                display: none;
+            }
+            
+            .footer-column a {
+                font-size: 0.9rem;
+            }
+            
+            .copyright {
+                font-size: 0.8rem;
+                padding-top: 20px;
+            }
+            
+            /* Itch.io адаптация */
+            .itch-iframe {
+                height: 150px;
+            }
+            
+            .itch-caption {
+                font-size: 0.9rem;
+            }
         }
 
-/* Общий стиль для всех анализов */
-.analysis-container {
-    margin-top: 20px;
-}
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .itch-iframe {
+                height: 120px;
+            }
+            
+            .footer-column li {
+                font-size: 0.85rem;
+            }
+        }
 
-.viz-tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-    gap: 10px;
-}
-
-.viz-tab {
-    padding: 8px 20px;
-    background: none;
-    border: 2px solid var(--accent);
-    color: var(--accent);
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-weight: 600;
-    background: rgba(198, 178, 106, 0.1);
-}
-
-.viz-tab.active {
-    background: var(--accent);
-    color: var(--dark);
-    box-shadow: 0 0 15px rgba(198, 178, 106, 0.4);
-}
-
-.viz-tab:hover:not(.active) {
-    background: rgba(198, 178, 106, 0.2);
-}
-
-.viz-content {
-    display: none;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.viz-content.active {
-    display: block;
-}
-
-/* Общий стиль для всех сеток анализов */
-.analysis-grid {
-    display: grid;
-    gap: 15px;
-}
-
-.analysis-card {
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    background: var(--card-bg);
-    border: 1px solid rgba(122, 129, 87, 0.3);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.analysis-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-.analysis-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--accent);
-}
-
-.analysis-card h4 {
-    color: var(--accent);
-    margin-bottom: 15px;
-    text-align: center;
-    font-size: 1.2rem;
-}
-
-.analysis-card ul {
-    flex-grow: 1;
-    padding: 0 10px;
-    list-style: none;
-}
-
-.analysis-card li {
-    padding: 10px 15px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 6px;
-    margin-bottom: 8px;
-    transition: all 0.3s;
-    position: relative;
-    padding-left: 25px;
-}
-
-.analysis-card li::before {
-    content: '•';
-    position: absolute;
-    left: 10px;
-    color: var(--accent);
-}
-
-.analysis-card li:hover {
-    transform: translateX(5px);
-    background: rgba(255,255,255,0.1);
-}
-
-/* Конкретные сетки для каждого анализа */
-.swot-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: 600px;
-}
-
-.pest-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: 600px;
-}
-
-.moscow-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: 600px;
-}
-
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    
+    .itch-embed-container {
+        display: inline-block;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 8px;
+        background: var(--card-bg);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin: 20px 0;
     }
     
-    .footer-column {
-        text-align: center;
+    .itch-embed-container iframe {
+        border-radius: 4px;
+        display: block;
     }
-    
-    .footer-column h3 {
-        font-size: 1.1rem;
-        margin-bottom: 15px;
-    }
-    
-    .footer-column h3::after {
-        left: 50%;
-        transform: translateX(-50%);
-        width: 30px;
-    }
-    
-    .footer-column li {
-        font-size: 0.9rem;
-        margin-bottom: 8px;
-        padding-left: 0;
-    }
-    
-    .footer-column li::before {
-        display: none; /* Убираем стрелочки на мобильных */
-    }
-    
-    .footer-column a {
-        font-size: 0.9rem;
-    }
-    
-    .copyright {
-        font-size: 0.8rem;
-        padding-top: 20px;
-    }
-}
-
-
-
-
-
-
-
-
-/* Itch.io блок */
-.itch-block {
-    text-align: center;
-    padding: 20px;
-}
-
-.itch-container {
-    background: var(--card-bg);
-    padding: 15px;
-    border-radius: 12px;
-    display: inline-block;
-    border: 1px solid var(--accent);
-    box-shadow: 0 0 15px rgba(198, 178, 106, 0.3);
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.itch-iframe-wrapper {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.itch-iframe {
-    width: 100%;
-    height: 167px;
-    max-width: 552px;
-    margin: 0 auto;
-    display: block;
-}
-
-.itch-caption {
-    margin-top: 20px;
-    color: var(--highlight);
-    font-size: 1rem;
-}
-
-/* Itch.io блок (инвертированная адаптация) */
-.itch-block {
-    text-align: center;
-    padding: 15px;
-}
-
-.itch-container {
-    background: var(--card-bg);
-    padding: 10px;
-    border-radius: 12px;
-    display: inline-block;
-    border: 1px solid var(--accent);
-    box-shadow: 0 0 15px rgba(198, 178, 106, 0.3);
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-.itch-iframe-wrapper {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.itch-iframe {
-    width: 100%;
-    height: 120px;
-    display: block;
-}
-
-.itch-caption {
-    margin-top: 15px;
-    color: var(--highlight);
-    font-size: 0.9rem;
-}
-
-/* Адаптация для десктопов */
-@media (min-width: 768px) {
-    .itch-container {
-        padding: 15px;
-        max-width: 400px;
-    }
-    
-    .itch-iframe {
-        height: 140px;
-    }
-    
-    .itch-caption {
-        margin-top: 20px;
-        font-size: 1rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .itch-container {
-        max-width: 552px;
-        padding: 20px;
-    }
-    
-    .itch-iframe {
-        height: 167px;
-    }
-    
-    .itch-block h3 {
-        font-size: 1.4rem;
-    }
-    
-    .itch-caption {
-        font-size: 1.1rem;
-    }
-}
-
-
-
-
-
-        
     </style>
 </head>
 <body>
@@ -987,10 +975,143 @@
                     </ul>
                 </div>
             </div>
-            <section id="research" class="section">
+        </section>
 
+        <section id="research" class="section">
             <h2 class="section-title">Научная база</h2>
             
+            
+
+            <!-- Блок с анализами (SWOT/PEST/MOSCOW) -->
+            <div class="card analysis-container">
+                <div class="viz-tabs">
+                    <button class="viz-tab active" data-viz="swot">SWOT</button>
+                    <button class="viz-tab" data-viz="pest">PEST</button>
+                    <button class="viz-tab" data-viz="moscow">MOSCOW</button>
+                </div>
+                
+                <div class="viz-content active" id="swot-viz">
+                    <div class="analysis-grid swot-grid">
+                        <div class="analysis-card" data-quadrant="strengths">
+                            <h4><span class="analysis-icon"> </span> Сильные стороны</h4>
+                            <ul>
+                                <li>Квалифицированные кадры и IT</li>
+                                <li>Мастер-классы и практика</li>
+                                <li>Привлечение старшекурсников</li>
+                                <li>Активное использование соцсетей</li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card" data-quadrant="weaknesses">
+                            <h4><span class="analysis-icon"> </span> Слабые стороны</h4>
+                            <ul>
+                                <li>Недостаток интерактива в мероприятиях</li>
+                                <li>Слабая информированность аудитории</li>
+                                <li>Слабая информированность аудитории</li>
+                                <li>Ограниченный охват</li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card" data-quadrant="opportunities">
+                            <h4><span class="analysis-icon"> </span> Возможности</h4>
+                            <ul>
+                                <li>Онлайн-форматы </li>
+                                <li>Новые траектории профориентации</li>
+                                <li>ПУвеличение партнерства </li>
+                                <li>Внедрение интерактивных технологий </li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card" data-quadrant="threats">
+                            <h4><span class="analysis-icon"> </span> Угрозы</h4>
+                            <ul>
+                                <li>Снижение интереса к очным мероприятиям</li>
+                                <li>Конкуренция с другими вузами</li>
+                                <li>Недостаточное финансирование</li>
+                                <li>Изменения в образовательных стандартах</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="viz-content" id="pest-viz">
+                    <div class="analysis-grid pest-grid">
+                        <div class="analysis-card" data-segment="political">
+                            <h4><span class="analysis-icon"> </span> Политика</h4>
+                            <ul>
+                                <li>Поддержка STEM</li>
+                                <li>Цифровизация образования</li>
+                                <li>Региональная политика</li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card" data-segment="economic">
+                            <h4><span class="analysis-icon"> </span> Экономика</h4>
+                            <ul>
+                                <li>Бюджетные ограничения</li>
+                                <li>Экономическая нестабильность</li>
+                                <li>Рынок труда</li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card" data-segment="social">
+                            <h4><span class="analysis-icon"> </span> Социум</h4>
+                            <ul>
+                                <li>Интерес к геймификации</li>
+                                <li>Популяризация науки</li>
+                                <li>Потребность в современных инструментах</li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card" data-segment="technological">
+                            <h4><span class="analysis-icon"> </span> Технологии</h4>
+                            <ul>
+                                <li>Доступность Ren'Py</li>
+                                <li>Развитие edtech</li>
+                                <li>Кросплатформенность</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="viz-content" id="moscow-viz">
+                    <div class="analysis-grid moscow-grid">
+                        <div class="analysis-card" data-category="must">
+                            <h4><span class="analysis-icon"> </span> Must have</h4>
+                            <ul>
+                                <li>Интерактивный сюжет с ветвлением</li>
+                                <li>Мини-игры по STEM-направлениям</li>
+                                <li>Система сохранения прогресса</li>
+                                <li>Адаптация под целевую аудиторию </li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card" data-category="should">
+                            <h4><span class="analysis-icon"> </span> Should have</h4>
+                            <ul>
+                                <li>Система достижений</li>
+                                <li>Мультиплатформенность</li>
+                                <li>Интеграция с соцсетями</li>
+                                <li>Локализация на другие языки</li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card" data-category="could">
+                            <h4><span class="analysis-icon"> </span> Could have</h4>
+                            <ul>
+                                <li>Добавление гуманитарных направлений</li>
+                                <li>Дополнительные мини-игры</li>
+                                <li>Кастомизация персонажей</li>
+                                <li>Система достижений</li>
+                            </ul>
+                        </div>
+                        <div class="analysis-card" data-category="wont">
+                            <h4><span class="analysis-icon"> </span> Won't have</h4>
+                            <ul>
+                                <li>VR-реализация</li>
+                                <li>Сложные 3D-графические элементы</li>
+                                <li>Монетизация</li>
+                                <li>Мультиплеерные режимы</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
             <div class="research-grid">
                 <!-- 1. Теоретическая часть -->
                 <div class="research-card">
@@ -1026,135 +1147,7 @@
                 </div>
             </div>
 
-            <div class="card analysis-container">
-    <div class="viz-tabs">
-        <button class="viz-tab active" data-viz="swot">SWOT</button>
-        <button class="viz-tab" data-viz="pest">PEST</button>
-        <button class="viz-tab" data-viz="moscow">MOSCOW</button>
-    </div>
-    
-    <div class="viz-content active" id="swot-viz">
-        <div class="analysis-grid swot-grid">
-            <div class="analysis-card" data-quadrant="strengths">
-                <h4>Сильные стороны</h4>
-                <ul>
-                    <li>Уникальный STEM-подход</li>
-                    <li>Образовательная ценность</li>
-                    <li>Интерактивное обучение</li>
-                    <li>Мультидисциплинарность</li>
-                </ul>
-            </div>
-            <div class="analysis-card" data-quadrant="weaknesses">
-                <h4>Слабые стороны</h4>
-                <ul>
-                    <li>Ограниченный бюджет</li>
-                    <li>Небольшая команда</li>
-                    <li>Ограниченный охват</li>
-                    <li>Зависимость от платформы</li>
-                </ul>
-            </div>
-            <div class="analysis-card" data-quadrant="opportunities">
-                <h4>Возможности</h4>
-                <ul>
-                    <li>Интеграция в образование</li>
-                    <li>Грантовая поддержка</li>
-                    <li>Партнерства с вузами</li>
-                    <li>Международная локализация</li>
-                </ul>
-            </div>
-            <div class="analysis-card" data-quadrant="threats">
-                <h4>Угрозы</h4>
-                <ul>
-                    <li>Конкуренция</li>
-                    <li>Технические ограничения</li>
-                    <li>Быстрое устаревание контента</li>
-                    <li>Изменения в образовательных стандартах</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    
-    <div class="viz-content" id="pest-viz">
-        <div class="analysis-grid pest-grid">
-            <div class="analysis-card" data-segment="political">
-                <h4>Политика</h4>
-                <ul>
-                    <li>Поддержка STEM</li>
-                    <li>Госпрограммы образования</li>
-                    <li>Цифровизация школ</li>
-                </ul>
-            </div>
-            <div class="analysis-card" data-segment="economic">
-                <h4>Экономика</h4>
-                <ul>
-                    <li>Бюджетные ограничения</li>
-                    <li>Финансирование образования</li>
-                    <li>Рынок образовательных игр</li>
-                </ul>
-            </div>
-            <div class="analysis-card" data-segment="social">
-                <h4>Социум</h4>
-                <ul>
-                    <li>Интерес к геймификации</li>
-                    <li>Популяризация науки</li>
-                    <li>Ценность образования</li>
-                </ul>
-            </div>
-            <div class="analysis-card" data-segment="technological">
-                <h4>Технологии</h4>
-                <ul>
-                    <li>Доступность Ren'Py</li>
-                    <li>Развитие edtech</li>
-                    <li>Мобильные платформы</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    
-    <div class="viz-content" id="moscow-viz">
-        <div class="analysis-grid moscow-grid">
-            <div class="analysis-card" data-category="must">
-                <h4>Must have</h4>
-                <ul>
-                    <li>Базовый функционал игры</li>
-                    <li>STEM-контент</li>
-                    <li>Образовательные модули</li>
-                    <li>Система сохранения</li>
-                </ul>
-            </div>
-            <div class="analysis-card" data-category="should">
-                <h4>Should have</h4>
-                <ul>
-                    <li>Система достижений</li>
-                    <li>Мультиплатформенность</li>
-                    <li>Локализация</li>
-                    <li>Статистика прогресса</li>
-                </ul>
-            </div>
-            <div class="analysis-card" data-category="could">
-                <h4>Could have</h4>
-                <ul>
-                    <li>Мультиплеер</li>
-                    <li>Дополнительные мини-игры</li>
-                    <li>Кастомизация персонажей</li>
-                    <li>Генератор заданий</li>
-                </ul>
-            </div>
-            <div class="analysis-card" data-category="wont">
-                <h4>Won't have</h4>
-                <ul>
-                    <li>VR-режим</li>
-                    <li>Полная 3D-графика</li>
-                    <li>Монетизация</li>
-                    <li>ИИ-персонажи</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-    </div> </section>
-</div>
+
 
             <div class="quote">
                 "Использование игровых механик в образовательном процессе позволяет повысить вовлеченность учащихся и улучшить усвоение материала, что подтверждается многочисленными исследованиями в области педагогики и когнитивной психологии."
@@ -1202,19 +1195,19 @@
                         <div class="slide-caption">Скриншот игры</div>
                     </div>
                     <div class="slide">
-                        <img src="images/6.jpg" alt="Скриншот игры">
+                        <img src="images/6.jpg" alt="Скриншот меню">
                         <div class="slide-caption">Скриншот меню</div>
                     </div>
                     <div class="slide">
-                        <img src="images/7.jpg" alt="Скриншот игры">
+                        <img src="images/7.jpg" alt="Скриншот меню">
                         <div class="slide-caption">Скриншот меню</div>
                     </div>
                     <div class="slide">
-                        <img src="images/8.jpg" alt="Скриншот игры">
+                        <img src="images/8.jpg" alt="Скриншот меню">
                         <div class="slide-caption">Скриншот меню</div>
                     </div>
                     <div class="slide">
-                        <img src="images/9.jpg" alt="Скриншот игры">
+                        <img src="images/9.jpg" alt="Скриншот меню">
                         <div class="slide-caption">Скриншот меню</div>
                     </div>
                 </div>
@@ -1244,27 +1237,12 @@
                 </div>
             </div>
 
-            
-        </section>
-        <section id="conclusion" class="section" >
-            <h2 class="section-title">Заключение</h2>
-
-            <div class="card" style="text-align: center;">
-                <p style="max-width: 800px; margin: 0 auto;">Разработанная в рамках данной работы визуальная новелла "Академия Х" представляет собой эффективный инструмент профориентации, сочетающий игровую механику с образовательным контентом. Результаты исследования подтверждают гипотезу о том, что геймифицированные подходы могут значительно повысить эффективность профессионального самоопределения учащихся.</p>
-                <div style="margin-top: 40px;">
-                    <a href="docs/VKR_Bondarenko_Alena.pdf" download="Дипломная_работа_Бондаренко_АП.pdf" class="btn">Скачать полный текст работы</a>
-                    <a href="https://bndrn4k.itch.io/choosing-the-future" class="btn btn-outline">Демо-версия игры</a>
-                </div>
-            </div>
-
-
-
-            
-            <!-- Itch.io блок (инвертированная адаптация) -->
+            <!-- Itch.io блок -->
             <div class="card itch-block">
                 <h3>Игра доступна на itch.io</h3>
                 
                 <div class="itch-container">
+                    
                     <div class="itch-iframe-wrapper">
                         <iframe 
                             frameborder="0" 
@@ -1280,8 +1258,17 @@
                 </p>
             </div>
 
+        </section>
 
-            
+        <section id="conclusion" class="section" style="text-align: center;">
+            <h2 class="section-title">Заключение</h2>
+            <div class="card">
+                <p style="max-width: 800px; margin: 0 auto;">Разработанная в рамках данной работы визуальная новелла "Академия Х" представляет собой эффективный инструмент профориентации, сочетающий игровую механику с образовательным контентом. Результаты исследования подтверждают гипотезу о том, что геймифицированные подходы могут значительно повысить эффективность профессионального самоопределения учащихся.</p>
+                <div style="margin-top: 40px;">
+                    <a href="docs/VKR_Bondarenko_Alena.pdf" download="Дипломная_работа_Бондаренко_АП.pdf" class="btn">Скачать полный текст работы</a>
+                    <a href="https://bndrn4k.itch.io/choosing-the-future" class="btn btn-outline">Демо-версия игры</a>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -1298,7 +1285,7 @@
                     <ul>
                         <li>Миронов Владимир Валерьевич</li>
                         <li>Доцент кафедры прикладной информатики</li>
-                        <li>Кандидат физико-математическах наук</li>
+                        <li>Кандидат физико-математических наук</li>
                     </ul>
                 </div>
                 
@@ -1307,7 +1294,7 @@
                     <ul>
                         <li>Гуляева С.Т.</li>
                         <li>Старший преподаватель кафедры прикладной информатики</li>
-                        <li>Консультации по текстам, геймдизайну и тестированию</li>
+                        <li>Консультирование по предметной области, геймдизайну и тестированию</li>
                     </ul>
                 </div>
 
@@ -1316,28 +1303,29 @@
                     <ul>
                         <li><a href="mailto:academy_x@mail.ru">academy_x@mail.ru</a></li>
                         <li><a href="tel:+79009822523">+7 (900) 982-25-23</a></li>
-                        <li>Сыктывкар, 2025</li>
+                        <li>Сыктывкар</li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>© 2025 СГУ им. Питирима Сорокина. Все права защищены.</p>
+                <p>© Сыктывкар 2025.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-document.querySelectorAll('.viz-tab').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.viz-tab').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.viz-content').forEach(c => c.classList.remove('active'));
-            
-            btn.classList.add('active');
-            document.getElementById(btn.dataset.viz + '-viz').classList.add('active');
+        document.querySelectorAll('.viz-tab').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.viz-tab').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.viz-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.viz + '-viz').classList.add('active');
+            });
         });
-    });
+
         // Анимация загрузки
         window.addEventListener('load', function() {
             setTimeout(function() {
