@@ -765,17 +765,44 @@
     height: 600px;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
-    .swot-grid,
-    .pest-grid,
-    .moscow-grid {
+    .footer-content {
         grid-template-columns: 1fr;
-        height: auto;
+        gap: 30px;
     }
     
-    .viz-tabs {
-        flex-wrap: wrap;
+    .footer-column {
+        text-align: center;
+    }
+    
+    .footer-column h3 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+    
+    .footer-column h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+    }
+    
+    .footer-column li {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        padding-left: 0;
+    }
+    
+    .footer-column li::before {
+        display: none; /* Убираем стрелочки на мобильных */
+    }
+    
+    .footer-column a {
+        font-size: 0.9rem;
+    }
+    
+    .copyright {
+        font-size: 0.8rem;
+        padding-top: 20px;
     }
 }
 
@@ -824,31 +851,76 @@
     font-size: 1rem;
 }
 
-/* Адаптация для мобильных */
-@media (max-width: 768px) {
+/* Itch.io блок (инвертированная адаптация) */
+.itch-block {
+    text-align: center;
+    padding: 15px;
+}
+
+.itch-container {
+    background: var(--card-bg);
+    padding: 10px;
+    border-radius: 12px;
+    display: inline-block;
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 15px rgba(198, 178, 106, 0.3);
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.itch-iframe-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.itch-iframe {
+    width: 100%;
+    height: 120px;
+    display: block;
+}
+
+.itch-caption {
+    margin-top: 15px;
+    color: var(--highlight);
+    font-size: 0.9rem;
+}
+
+/* Адаптация для десктопов */
+@media (min-width: 768px) {
     .itch-container {
-        padding: 10px;
-        width: 100%;
+        padding: 15px;
+        max-width: 400px;
     }
     
     .itch-iframe {
-        height: 150px;
-        min-width: 300px;
+        height: 140px;
     }
     
     .itch-caption {
-        margin-top: 15px;
-        font-size: 0.9rem;
+        margin-top: 20px;
+        font-size: 1rem;
     }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 1024px) {
+    .itch-container {
+        max-width: 552px;
+        padding: 20px;
+    }
+    
     .itch-iframe {
-        height: 120px;
+        height: 167px;
     }
     
     .itch-block h3 {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+    }
+    
+    .itch-caption {
+        font-size: 1.1rem;
     }
 }
 
@@ -1194,25 +1266,25 @@
 
 
             
-            <!-- Itch.io блок -->
-                <div class="card itch-block">
-                    <h3>Игра доступна на itch.io</h3>
-                    
-                    <div class="itch-container">
-                        <div class="itch-iframe-wrapper">
-                            <iframe 
-                                frameborder="0" 
-                                src="https://itch.io/embed/3647339?linkback=true&amp;bg_color=1e262d&amp;fg_color=d8e1e8&amp;link_color=c6b26a&amp;border_color=7a8159" 
-                                class="itch-iframe"
-                                style="border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-                            </iframe>
-                        </div>
+            <!-- Itch.io блок (инвертированная адаптация) -->
+            <div class="card itch-block">
+                <h3>Игра доступна на itch.io</h3>
+                
+                <div class="itch-container">
+                    <div class="itch-iframe-wrapper">
+                        <iframe 
+                            frameborder="0" 
+                            src="https://itch.io/embed/3647339?linkback=true&amp;bg_color=1e262d&amp;fg_color=d8e1e8&amp;link_color=c6b26a&amp;border_color=7a8159" 
+                            class="itch-iframe"
+                            style="border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                        </iframe>
                     </div>
-                    
-                    <p class="itch-caption">
-                        Попробуйте демо-версию и оставьте отзыв!
-                    </p>
                 </div>
+                
+                <p class="itch-caption">
+                    Попробуйте демо-версию и оставьте отзыв!
+                </p>
+            </div>
 
 
             
@@ -1231,11 +1303,20 @@
                     <h3>Научный руководитель</h3>
                     <ul>
                         <li>Миронов Владимир Валерьевич</li>
-                        <li>Доцент кафедры информационных систем</li>
-                        <li>Кандидат педагогических наук</li>
+                        <li>Доцент кафедры прикладной информатики</li>
+                        <li>Кандидат физико-математическах наук</li>
                     </ul>
                 </div>
                 
+                <div class="footer-column">
+                    <h3>Благодарности</h3>
+                    <ul>
+                        <li>Гуляева С.Т.</li>
+                        <li>Старший преподаватель кафедры прикладной информатики</li>
+                        <li>Консультации по текстам, геймдизайну и тестированию</li>
+                    </ul>
+                </div>
+
                 <div class="footer-column">
                     <h3>Контакты</h3>
                     <ul>
