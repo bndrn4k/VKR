@@ -911,6 +911,91 @@
         border-radius: 4px;
         display: block;
     }
+
+
+
+
+
+
+    /* Карточки */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            border: 1px solid rgba(122,129,87,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        /* Миры */
+        .worlds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .world-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid rgba(122,129,87,0.2);
+        }
+
+        .world-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        }
+
+        .world-header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 25px;
+            text-align: center;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .world-icon {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .world-title {
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .world-content {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -940,8 +1025,8 @@
 
     <main class="container">
         <section id="about" class="section">
+            <h2 class="section-title">О проекте</h2>
             <div class="card">
-                <h2 class="section-title">О работе</h2>
                 <p>Данная выпускная квалификационная работа посвящена разработке образовательной визуальной новеллы "Академия Х", направленной на профориентацию абитуриентов в сфере STEM-дисциплин. Игра сочетает элементы повествования с образовательным контентом, позволяя игрокам в интерактивной форме познакомиться с различными научными направлениями.</p>
             </div>
             <div class="features-grid">
@@ -975,8 +1060,39 @@
                     </ul>
                 </div>
             </div>
+            <div class="features-grid">
+                <div class="card">
+                    <h3>Для кого эта игра?</h3>
+                    <ul>
+                        <li>Абитуриенты, выбирающие профессию</li>
+                        <li>Любители визуальных новелл</li>
+                        <li>Те, кто интересуется наукой</li>
+                        <li>Поклонники образовательных игр</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Особенности</h3>
+                    <ul>
+                        <li>6 уникальных научных миров</li>
+                        <li>Профориентация через игру</li>
+                        <li>Множество концовок</li>
+                        <li>Красивая рисовка в стиле аниме</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Технические данные</h3>
+                    <ul>
+                        <li>Платформы: Windows, Linux</li>
+                        <li>Язык: Русский</li>
+                        <li>Движок: Ren'Py</li>
+                        <li>Разработка: СГУ им. Питирима Сорокина</li>
+                    </ul>
+                </div>
+            </div>
         </section>
-
+        
         <section id="research" class="section">
             <h2 class="section-title">Научная база</h2>
             
@@ -1224,7 +1340,6 @@
                     <div class="slider-dot"></div>
                 </div>
             </div>
-
             <div class="features-grid">
                 <div class="card">
                     <h3>Эффективность</h3>
@@ -1242,7 +1357,7 @@
                 <h3>Игра доступна на itch.io</h3>
                 
                 <div class="itch-container">
-                    
+
                     <div class="itch-iframe-wrapper">
                         <iframe 
                             frameborder="0" 
@@ -1260,9 +1375,87 @@
 
         </section>
 
-        <section id="conclusion" class="section" style="text-align: center;">
+
+
+        <main class="container">
+        <section id="about" class="section">
+            
+            <h2 class="section-title">Научные миры</h2>
+            
+            <div class="worlds-grid">
+                <!-- 1. Математика -->
+                <div class="world-card">
+                    <div class="world-header">
+                        <div class="world-icon">∫</div>
+                        <h3 class="world-title">Математика</h3>
+                    </div>
+                    <div class="world-content">
+                        <p>Царство чисел и формул, где абстрактные концепции оживают. Решайте головоломки, основанные на реальных математических принципах.</p>
+                    </div>
+                </div>
+                
+                <!-- 2. Информатика -->
+                <div class="world-card">
+                    <div class="world-header">
+                        <div class="world-icon">{ }</div>
+                        <h3 class="world-title">Информатика</h3>
+                    </div>
+                    <div class="world-content">
+                        <p>Мир алгоритмов и программирования, где код становится магическими заклинаниями, а логика - суперсилой.</p>
+                    </div>
+                </div>
+                
+                <!-- 3. Биология -->
+                <div class="world-card">
+                    <div class="world-header">
+                        <div class="world-icon">DNA</div>
+                        <h3 class="world-title">Биология</h3>
+                    </div>
+                    <div class="world-content">
+                        <p>Вселенная живых организмов от микроскопических клеток до сложных экосистем. Откройте тайны эволюции.</p>
+                    </div>
+                </div>
+                
+                <!-- 4. Химия -->
+                <div class="world-card">
+                    <div class="world-header">
+                        <div class="world-icon">H₂O</div>
+                        <h3 class="world-title">Химия</h3>
+                    </div>
+                    <div class="world-content">
+                        <p>Молекулы и реакции, где элементы взаимодействуют по своим законам. Создавайте новые вещества!</p>
+                    </div>
+                </div>
+                
+                <!-- 5. Физика -->
+                <div class="world-card">
+                    <div class="world-header">
+                        <div class="world-icon">E=mc²</div>
+                        <h3 class="world-title">Физика</h3>
+                    </div>
+                    <div class="world-content">
+                        <p>Фундаментальные законы Вселенной - от квантовых частиц до космических масштабов. Исследуйте природу реальности.</p>
+                    </div>
+                </div>
+                
+                <!-- 6. Геология -->
+                <div class="world-card">
+                    <div class="world-header">
+                        <div class="world-icon">⊕</div>
+                        <h3 class="world-title">Геология</h3>
+                    </div>
+                    <div class="world-content">
+                        <p>Путешествие вглубь Земли. Минералы, тектонические процессы и древняя история нашей планеты.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        
+        <section id="conclusion" class="section" >
             <h2 class="section-title">Заключение</h2>
-            <div class="card">
+            <div class="card" style="text-align: center;">
                 <p style="max-width: 800px; margin: 0 auto;">Разработанная в рамках данной работы визуальная новелла "Академия Х" представляет собой эффективный инструмент профориентации, сочетающий игровую механику с образовательным контентом. Результаты исследования подтверждают гипотезу о том, что геймифицированные подходы могут значительно повысить эффективность профессионального самоопределения учащихся.</p>
                 <div style="margin-top: 40px;">
                     <a href="docs/VKR_Bondarenko_Alena.pdf" download="Дипломная_работа_Бондаренко_АП.pdf" class="btn">Скачать полный текст работы</a>
